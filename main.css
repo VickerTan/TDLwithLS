@@ -1,0 +1,243 @@
+:root {
+    --primary: #EA40A4;
+    --business: #3A82EE;
+    --personal: var(--primary);
+    --light: #EEE;
+    --grey: #888;
+    --dark: #313154;
+    --danger: #FF5B57;
+
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    --business-glow: 0 0 4px rgb(58, 130, 238, 0.75);
+    --personal-glow: 0 0 4px rgb(234, 64, 164, 0.75);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input:not([type="radio"]):not([type="checkbox"]), button {
+    border: none;
+    outline: none;
+    appearance: none;
+    background: none;
+    cursor: initial;
+}
+
+body {
+    background: var(--light);
+    color: var(--dark);
+}
+
+section {
+    margin: 2rem 0;
+    padding: 0 1.5rem;
+}
+
+h3 {
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    color: var(--grey);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.greeting .title {
+    display: flex;
+}
+
+.greeting .title input {
+    margin-left: 0.5rem;
+    flex: 1 1 0%;
+    min-width: 0;
+}
+
+.greeting .title,
+.greeting .title input {
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.create-task input[type="text"] {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--dark);
+    background-color: #FFF;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.create-task .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.create-task .options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+}
+
+.bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--business);
+    box-shadow: var(--business-glow);
+}
+
+.bubble.personal {
+    border-color: var(--personal);
+    box-shadow: var(--personal-glow);
+}
+
+.bubble::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    background-color: var(--business);
+    box-shadow: var(--business-glow);
+    transition: 0.3s ease-in-out;
+}
+
+.bubble.personal::after {
+    background-color: var(--personal);
+    box-shadow: var(--personal-glow);
+}
+
+input:checked ~ .bubble::after{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.create-task .options div {
+    color: var(--dark);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.create-task input[type="submit"] {
+    display: block;
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #FFF;
+    box-shadow: var(--personal-glow);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.create-task input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+.create-task input[type="submit"]:active {
+    opacity: 0.6;
+}
+
+.task-list .list {
+    margin: 1rem 0;
+}
+
+.task-list .list .task-item {
+    display: flex;
+    margin-bottom: 1rem;
+    background-color: #FFF;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.task-item label {
+    display: block;
+    margin-right: 1rem;
+    cursor: pointer;
+    padding: 1rem 0.8rem;
+}
+
+.task-item .task-content {
+    flex: 1 1 0%;
+}
+
+.task-item .task-content input {
+    color: var(--dark);
+    padding: 1rem 0;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+.task-item .task-content input.business:not(:read-only) {
+    color: var(--business);
+}
+
+.task-item .task-content input.personal:not(:read-only) {
+    color: var(--personal);
+}
+
+.task-item .actions {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem; 
+}
+
+.task-item .actions button {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #FFF;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.task-item .actions button:hover {
+    opacity: 0.8;
+}
+
+.task-item .actions .edit {
+    background-color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.task-item .actions .delete {
+    background-color: var(--danger);
+}
+
+.task-item.done .task-content input {
+    text-decoration: line-through;
+    color: var(--grey);
+}
